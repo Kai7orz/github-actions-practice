@@ -1,1 +1,1 @@
-testtest
+auto label 機能のテスト
