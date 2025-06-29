@@ -1,0 +1,3 @@
+# ブランチごとに付与するラベルを変更
+feature: 
+  - head-branch: ['^feature/']
