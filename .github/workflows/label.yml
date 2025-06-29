@@ -1,11 +1,14 @@
 name: Labeler
-on: [pull_request]
+on: 
+  pull_request:
+    types: [synchronize]
 
 jobs:
   label:
       runs-on: ubuntu-latest
 
       steps:
+      - uses: actions/checkout@v4
       - uses: actions/labeler@v5
         with:
           configuration-path: .github/configs/labeler.yml
