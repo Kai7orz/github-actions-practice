@@ -13,8 +13,13 @@ jobs:
         uses: actions/checkout@v4
       - run: echo "MY_REPOSITORY=$(basename -s .git $(git remote get-url origin))" >> $GITHUB_ENV
       - run: |
-            pr_list=$(gh pr list --repo $OWNER/$MY_REPOSITORY --json title,url,author | jq '[.[].author]' )
+            pr_list=$(gh pr list --repo $OWNER/$MY_REPOSITORY --json title,url,author | jq -c '[.[].author]' )
             echo "$pr_list" >> $GITHUB_OUTPUT
+
+            echo "$pr_list" | jq -c '.[]' | while read aut; do 
+              echo "$aut"
+            done
+
       # - run: |
       #       while read user
       #       do 
