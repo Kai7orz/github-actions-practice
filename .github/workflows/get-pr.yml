@@ -14,17 +14,19 @@ jobs:
       - run: echo "MY_REPOSITORY=$(basename -s .git $(git remote get-url origin))" >> $GITHUB_ENV
       - run: |
             pr_list=$(gh pr list --repo $OWNER/$MY_REPOSITORY --json title,url,author | jq -c '[.[].author]' )
-            echo "$pr_list" >> $GITHUB_OUTPUT
+            echo "value=$pr_list" >> $GITHUB_OUTPUT
 
             echo "$pr_list" | jq -c '.[]' | while read aut; do 
-              echo "$aut"
+              match=$(jq -r --arg login "$login" '.users[] | select(.name == $login)' .github/workflows/users.json)
+
+              if [ -n "$match" ]; then 
+               echo "☑ users.json matched"
+              else
+               echo "×"
+              fi
             done
 
-      # - run: |
-      #       while read user
-      #       do 
-      #        echo "PR 作成者: ${user} "
-      #       done < ${value}
+   
 
         env: 
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN}}
