@@ -15,7 +15,7 @@ jobs:
       - run: |
             pr_list=$(gh pr list --repo $OWNER/$MY_REPOSITORY --json title,url,author | jq -c '[.[].author]' )
             echo "value=$pr_list" >> $GITHUB_OUTPUT
-
+            echo "$pr_list"
             echo "$pr_list" | jq -c '.[]' | while read aut; do 
               match=$(jq -r --arg login "$login" '.users[] | select(.name == $login)' .github/workflows/users.json)
 
