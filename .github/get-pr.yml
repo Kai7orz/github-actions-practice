@@ -1,0 +1,17 @@
+name: pr の取得
+
+on:
+  workflow_dispatch:
+
+jobs: 
+  get-prs:
+    runs-on: ubuntu-latest  
+    env:
+      OWNER: Kai7orz
+    steps:
+    - uses: actions/checkout@v4
+    - run: echo "MY_REPOSITORY=$(basename -s .git $(git remote get-url origin))" >> $GITHUB_ENV
+    - run: gh pr list --repo $OWNER/$MY_REPOSITORY --json title,url
+      env: 
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+    
