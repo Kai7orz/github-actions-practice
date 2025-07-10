@@ -14,7 +14,7 @@ jobs:
       - run: echo "MY_REPOSITORY=$(basename -s .git $(git remote get-url origin))" >> $GITHUB_ENV
       - run: |
             pr_list=$(gh pr list --repo $OWNER/$MY_REPOSITORY --json title,url,author | jq '[.[].author]' )
-            echo "value=$pr_list" >> $GITHUB_OUTPUT
+            echo "$pr_list" >> $GITHUB_OUTPUT
       # - run: |
       #       while read user
       #       do 
