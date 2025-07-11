@@ -5,7 +5,7 @@ on:
   
 env:
   SLACK_USERNAME: Slack Notify Bot 
-  SLACK_WEBHOOK: ${{secrets.SLACK_WEB_HOOK_URL}}
+  SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK_URL}}
 
 
 jobs: 
@@ -30,8 +30,6 @@ jobs:
               else
                echo "×"
               fi
-            echo "$SLACK_WEBHOOK"
-            
             done
 
         env: 
