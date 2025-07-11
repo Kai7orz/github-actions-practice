@@ -3,10 +3,6 @@ name: pr の取得
 on:
   workflow_dispatch:
   
-env:
-  SLACK_USERNAME: Slack Notify Bot 
-  SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK_URL}}
-
 
 jobs: 
   get-prs:
@@ -35,9 +31,12 @@ jobs:
         env: 
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN}}
       
+      - uses: actions/checkout@v4
       - name: slack通知
         uses: rtCamp/action-slack-notify@v2        
-        env:   
+        env:
+          SLACK_USERNAME: Slack Notify Bot 
+          SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK_URL}}
           SLACK_TITLE: success 
           SLACK_COLOR: good 
           SLACK_MESSAGE: 動作検証完了☑
