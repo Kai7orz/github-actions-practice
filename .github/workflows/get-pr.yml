@@ -36,7 +36,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2        
         env:
           SLACK_USERNAME: Slack Notify Bot 
-          SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK_URL}}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_TITLE: success 
           SLACK_COLOR: good 
           SLACK_MESSAGE: 動作検証完了☑
