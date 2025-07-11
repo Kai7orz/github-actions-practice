@@ -30,7 +30,10 @@ jobs:
               else
                echo "×"
               fi
+            echo "$SLACK_WEBHOOK"
+            
             done
+
         env: 
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN}}
       
